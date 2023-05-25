@@ -1,6 +1,5 @@
 import {useRef, useState} from "react";
 
-
 function App() {
     let [name, setName] = useState('Enter your Name');
     let nameField = useRef('');
@@ -18,16 +17,12 @@ function App() {
     let [archery, setArchery] = useState(0);
     let [educability, setEducability] = useState(0);
     let [survival, setSurvival] = useState(0);
-    let [medicine, setMidicine] = useState(0);
+    let [medicine, setMedicine] = useState(0);
     let [intimidation, setIntimidation] = useState(0);
-    let [insight, setInsigth] = useState(0);
+    let [insight, setInsight] = useState(0);
     let [appearance, setAppearance] = useState(0);
     let [manipulation, setManipulation] = useState(0);
 
-
-    const handleChangeName = () => {
-       setName(nameField.current.value);
-    }
     const actionIncHealth = () => {
         if (strength < 10) {
             setStrength(++strength);
@@ -49,11 +44,51 @@ function App() {
     const actionTakeDamage = () => {
         if((health - damage) > 0)setDamage(++damage);
     }
-
+    const actionAddLvlRank = (lvl) => {
+        switch (lvl) {
+            case 0:
+                return("0 Untrained");
+            case 1:
+                return("1 Beginner");
+            case 2:
+                return("2 Apprentice");
+            case 3:
+                return("3 Adept");
+            case 4:
+                return("4 Expert");
+            case 5:
+                return("5 Master*");
+            default: alert("Fail");
+        }
+    }
+    const handleChangeName = () => {
+        setName(nameField.current.value);
+    }
+    const handleLevelUp = (atr, ability, setAbility, atrName) => {
+        let atrLeft;
+        switch (atrName) {
+            case "strength":
+                atrLeft = strength - attack;
+                break;
+            case "agility":
+                atrLeft = agility - stealth - archery;
+                break;
+            case "intelligence":
+                atrLeft = intelligence - educability - survival - medicine;
+                break;
+            case "charisma":
+                atrLeft = charisma - intimidation - insight - appearance - manipulation;
+                break;
+            default: break;
+        }
+        if (atrLeft > 0 && ability < 5) {
+            setAbility(++ability)
+        }
+    }
   return (
     <div className="App">
         <div className="name">
-          <h3>Name: {name}</h3>
+          <h1>Name: {name}</h1>
           <input  type="text" ref={nameField}/>
           <button onClick={handleChangeName}>Save</button>
       </div>
@@ -94,22 +129,22 @@ function App() {
         <div className="abilities">
             <h4>Abilities</h4>
             <div className="strength">
-                <div className="attack">Attack: {attack}</div>
+                <div className="attack" onClick={() => handleLevelUp(strength, attack, setAttack, "strength")}>Attack: level {actionAddLvlRank(attack)}</div>
             </div>
             <div className="agility">
-                <div className="stealth">Stealth: {stealth}</div>
-                <div className="archery">Archery: {archery}</div>
+                <div className="stealth" onClick={() => handleLevelUp(agility, stealth, setStealth, "agility")}>Stealth: level {actionAddLvlRank(stealth)}</div>
+                <div className="archery" onClick={() => handleLevelUp(agility, archery, setArchery, "agility")}>Archery: level {actionAddLvlRank(archery)}</div>
             </div>
             <div className="intelligence">
-                <div className="educability">Educability: {educability}</div>
-                <div className="survival">Survival: {survival}</div>
-                <div className="medicine">Medicine: {medicine}</div>
+                <div className="educability" onClick={() => handleLevelUp(intelligence, educability, setEducability, "intelligence")}>Educability: level {actionAddLvlRank(educability)}</div>
+                <div className="survival" onClick={() => handleLevelUp(intelligence, survival, setSurvival, "intelligence")}>Survival: level {actionAddLvlRank(survival)}</div>
+                <div className="medicine" onClick={() => handleLevelUp(intelligence, medicine, setMedicine, "intelligence")}>Medicine: level {actionAddLvlRank(medicine)}</div>
             </div>
             <div className="charisma">
-                <div className="intimidation">Intimidation: {intimidation}</div>
-                <div className="insight">Insight: {insight}</div>
-                <div className="appearance">Appearance: {appearance}</div>
-                <div className="manipulation">Manipulation:{manipulation}</div>
+                <div className="intimidation" onClick={() => handleLevelUp(charisma, intimidation, setIntimidation, "charisma")}>Intimidation: level {actionAddLvlRank(intimidation)}</div>
+                <div className="insight" onClick={() => handleLevelUp(charisma, insight, setInsight, "charisma")}>Insight: level {actionAddLvlRank(insight)}</div>
+                <div className="appearance" onClick={() => handleLevelUp(charisma, appearance, setAppearance, "charisma")}>Appearance: level {actionAddLvlRank(appearance)}</div>
+                <div className="manipulation" onClick={() => handleLevelUp(charisma, manipulation, setManipulation, "charisma")}>Manipulation:level {actionAddLvlRank(manipulation)}</div>
             </div>
         </div>
     </div>

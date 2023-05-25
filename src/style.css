@@ -1,0 +1,32 @@
+body{
+    background: #1a1b20;
+    color: #d6d6d9;
+}
+h1{
+    font-weight: 400;
+    font-size: 30px;
+    margin: 5px  0;
+}
+.name{
+    background: #26272c;
+    border-radius: 4px;
+    padding: 12px;
+    margin-top: 16px;
+}
+.name input {
+    color: #d6d6d9;
+    border: 2px solid #8f8f91;
+    min-width: 40vh;
+    background: #2b2c31;
+    border-radius: 4px ;
+    padding: 12px;
+    margin-top: 16px;
+}
+.name button {
+    padding: 13px 20px;
+    margin-left: 10px;
+    border: 1px solid #2c2c31;
+    background: #1a1b20;
+    color: #8f8f91;
+    font-size: 14px;
+}
