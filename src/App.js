@@ -85,6 +85,53 @@ function App() {
             setAbility(++ability)
         }
     }
+    const handleDownload = () => {
+        let obj = {
+            name,
+            strength,
+            agility,
+            intelligence,
+            charisma,
+            health,
+            damage,
+            attack,
+            stealth,
+            archery,
+            educability,
+            survival,
+            medicine,
+            intimidation,
+            insight,
+            appearance,
+            manipulation
+        }
+        return URL.createObjectURL(new Blob([JSON.stringify(obj)],{type: "application/json"}));
+    }
+    const handleUpload = (e) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.addEventListener("loadend", (e) =>{
+            let res = JSON.parse(e.target.result)
+            setName(res.name);
+            setStrength(res.strength);
+            setAgility(res.agility)
+            setIntelligence(res.intelligence);
+            setCharisma(res.charisma);
+            setHealth(res.health);
+            setDamage(res.damage);
+            setAttack(res.attack);
+            setStealth(res.stealth);
+            setArchery(res.archery);
+            setEducability(res.educability);
+            setSurvival(res.survival);
+            setMedicine(res.medicine);
+            setIntimidation(res.intimidation);
+            setInsight(res.insight);
+            setAppearance(res.appearance);
+            setManipulation(res.manipulation);
+        })
+        reader.readAsText(file);
+    }
   return (
     <div className="App">
         <div className="name">
@@ -92,42 +139,38 @@ function App() {
           <input  type="text" ref={nameField}/>
           <button onClick={handleChangeName}>Save</button>
       </div>
+        <h4>Your attributes</h4>
         <div className="attributes">
-            <h4>Your attributes</h4>
             <div className="strength">
-                Strength:
+                <label>Strength: {strength}</label>
                 <button onClick={() => actionIncHealth()}>+</button>
-                <label>{strength}</label>
                 <button onClick={() => actionDecHealth()}>-</button>
             </div>
             <div className="agility">
-                Agility:
+                <label>Agility: {agility}</label>
                 <button onClick={() => actionInc(agility,setAgility)}>+</button>
-                <label>{agility}</label>
                 <button onClick={() => actionDec(agility,setAgility)}>-</button>
             </div>
             <div className="intelligence">
-                Intelligence:
+                <label>Intelligence: {intelligence}</label>
                 <button onClick={() => actionInc(intelligence,setIntelligence)}>+</button>
-                <label>{intelligence}</label>
                 <button onClick={() => actionDec(intelligence,setIntelligence)}>-</button>
             </div>
             <div className="charisma">
-                Charisma:
+                <label>Charisma: {charisma}</label>
                 <button onClick={() => actionInc(charisma,setCharisma)}>+</button>
-                <label>{charisma}</label>
                 <button onClick={() => actionDec(charisma,setCharisma)}>-</button>
             </div>
         </div>
+        <h4>Stats</h4>
         <div className="options">
-            <h4>Stats</h4>
             <div className="health">Health: {health - damage <= 0 ?"You are died" : health - damage }/{health}</div>
             <div className="evasion">Evasion: {10 + agility}</div>
             <div className="energy">Energy: {agility + intelligence}</div>
             <button onClick={actionTakeDamage}>Damage</button>
         </div>
+        <h4>Abilities</h4>
         <div className="abilities">
-            <h4>Abilities</h4>
             <div className="strength">
                 <div className="attack" onClick={() => handleLevelUp(strength, attack, setAttack, "strength")}>Attack: level {actionAddLvlRank(attack)}</div>
             </div>
@@ -146,6 +189,11 @@ function App() {
                 <div className="appearance" onClick={() => handleLevelUp(charisma, appearance, setAppearance, "charisma")}>Appearance: level {actionAddLvlRank(appearance)}</div>
                 <div className="manipulation" onClick={() => handleLevelUp(charisma, manipulation, setManipulation, "charisma")}>Manipulation:level {actionAddLvlRank(manipulation)}</div>
             </div>
+        </div>
+        <div className="profile">
+            <a href={handleDownload()} download>Download profile</a>
+            <label>Upload your profile</label>
+            <input type="file" accept=".json" onChange={handleUpload}/>
         </div>
     </div>
   );

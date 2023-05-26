@@ -1,11 +1,17 @@
 body{
     background: #1a1b20;
     color: #d6d6d9;
+    font-size: 13pt;
 }
 h1{
     font-weight: 400;
-    font-size: 30px;
+    font-size: 23pt;
     margin: 5px  0;
+}
+h4 {
+    font-weight: 400;
+    font-size: 20pt;
+    margin: 10px  10px;
 }
 .name{
     background: #26272c;
@@ -24,9 +30,101 @@ h1{
 }
 .name button {
     padding: 13px 20px;
-    margin-left: 10px;
+    margin: 10px;
     border: 1px solid #2c2c31;
     background: #1a1b20;
     color: #8f8f91;
-    font-size: 14px;
+}
+.attributes{
+    background: #26272c;
+    padding: 12px;
+    border: 1px solid #2c2c31;
+    display: flex;
+    justify-content: space-around;
+}
+.attributes div {
+    padding: 10px;
+}
+.attributes button {
+    width: 40px;
+    height: 40px;
+    background-color: #000000;
+    color: #dc9c00;
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 18pt;
+    font-weight: bold;
+}
+.options{
+    position: relative;
+    background: #26272c;
+    padding: 12px;
+    border: 1px solid #2c2c31;
+}
+.options div{
+    margin: 10px 0;
+}
+.options button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 13px 20px;
+    margin: 10px;
+    border: 1px solid #2c2c31;
+    background: #1a1b20;
+    color: #8f8f91;
+}
+.abilities {
+    background: #26272c;
+    padding: 12px;
+    border: 1px solid #2c2c31;
+    display: flex;
+    justify-content: space-around;
+}
+.abilities div {
+    padding: 13px 20px;
+    margin: 10px;
+    border: 1px solid #2c2c31;
+    background: #1a1b20;
+    color: #8f8f91;
+}
+.strength div{
+    cursor: pointer;
+}
+.strength div:hover{
+    background: #26272c;
+}
+.agility div{
+    cursor: pointer;
+}
+.agility div:hover{
+    background: #26272c;
+}
+.intelligence div{
+    cursor: pointer;
+}
+.intelligence div:hover{
+    background: #26272c;
+}
+.charisma div {
+    cursor: pointer;
+}
+.charisma div:hover{
+    background: #26272c;
+}
+.profile{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+a{
+    width: 20vh;
+    margin: 10px 0;
+    color: #d6d6d9;
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+a:hover{
+    background: #26272c;
 }
